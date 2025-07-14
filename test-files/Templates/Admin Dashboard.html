@@ -9,7 +9,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   height: 100vh; 
-  background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+  background-image: url("{{ url_for('static', filename='Images-UBNHS/ADMIN DASHBOARD BG.png') }}");
   background-size: cover; 
   background-position: 0px 0px; 
   background-attachment: fixed; 
@@ -24,7 +24,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #A8201A;
+  background-color: #182532;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -136,8 +136,8 @@ body {
 
 // Chart.js Script
   const ctx = document.getElementById('positionsChart').getContext('2d');
-  const committees = {{ committees | tojson }};  // Pass the committee names from the backend
-  const votes = {{ votes | tojson }};  // Pass the vote counts from the backend
+  const committees = JSON.parse('{{ committees | tojson | safe }}');  // Pass the committee names from the backend
+  const votes = JSON.parse('{{ votes | tojson | safe }}');  // Pass the vote counts from the backend
 
   const positionsChart = new Chart(ctx, {
       type: 'bar',
