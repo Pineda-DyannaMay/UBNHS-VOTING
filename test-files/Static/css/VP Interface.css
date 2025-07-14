@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+    background-image: url("{{ url_for('static', filename='Images-UBNHS/MAIN BG 3.png') }}");
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;

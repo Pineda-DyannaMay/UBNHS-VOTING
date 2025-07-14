@@ -24,7 +24,7 @@ body {
 
 .sidebar a.active {
   background-color: #143642;
-  color: #DAD2D8
+  color: #DAD2D8;
   font-weight: bold;
 }
 
