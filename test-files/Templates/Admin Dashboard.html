@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PUPT CS El-Express Admin Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/AD Interface.css') }}">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh; 
+  background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+  background-size: cover; 
+  background-position: 0px 0px; 
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background-color: #DAD2D8;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #A8201A;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #EC9A29;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #DAD2D8;
+  background-color: #143642;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 36px;
+  margin-left: 10px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #A8201A;
+  color: white;
+  padding: 10px 15px;
+  border: 2px solid;
+  border-radius: 8px;
+  border-color: #EC9A29;
+}
+
+.openbtn:hover {
+  background-color: #143642;
+  color: #DAD2D8;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.chart-container {
+  width: 90%; 
+  height: 450px; 
+  margin-top: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px; 
+  border-radius: 10px;
+  border: 4px solid #A8201A;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="{{ url_for('dashboard_bp.dashboard') }}" id="home">Home</a>
+  <a href="{{ url_for('candidate_bp.candidate') }}">Candidates</a>
+  <a href="{{ url_for('voters_bp.voters') }}">Voters/Members</a>
+  <a href="{{ url_for('about_bp.about') }}">About Us</a>
+  <a href="{{ url_for('auth_bp.logout') }}">Log Out</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
+  <main class="content">
+        <div class="image-container1">
+            <img src="{{ url_for('static', filename='Images/El1.png') }}" alt="Web Logo">
+        </div>
+        <div class="status-container">
+          <div class="status-header">
+              <h1><b>ELECTION STATUS</b></h1>
+          </div>
+        </div>
+        
+        <center><div class="chart-container">
+            <canvas id="positionsChart"></canvas>
+        </div></center>
+
+        <a href="{{ url_for('dashboard_bp.summary') }}">View Voting Summary</a>
+    </main>
+</div>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+
+  document.getElementById('home').classList.add('active');
+
+// Chart.js Script
+  const ctx = document.getElementById('positionsChart').getContext('2d');
+  const committees = {{ committees | tojson }};  // Pass the committee names from the backend
+  const votes = {{ votes | tojson }};  // Pass the vote counts from the backend
+
+  const positionsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: committees,
+          datasets: [{
+              label: 'Voting Results',
+              data: votes,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              x: {
+                  beginAtZero: true,
+                  ticks: {
+                      maxRotation: 45,
+                      minRotation: 45
+                  }
+              },
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+
+</script>
+</body>
+</html>

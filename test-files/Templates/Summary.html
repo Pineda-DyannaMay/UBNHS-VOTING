@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Candidate</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for candidate in results %}
+        <tr>
+            <td>{{ candidate.name }}</td>
+            <td>{{ candidate.votes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PUPT CS El-Express Home Page</title>
+
+	 <link rel="stylesheet" href="{{ url_for('static', filename='css/HP Interface.css') }}">
+</head>
+<body bgcolor="#DAD2D8">
+<br>
+
+<div class="image-container-wrapper">
+    <div class="image-container3">
+        <img src="{{ url_for('static', filename='Images/PUPlogo.png') }}">
+    </div>
+    <div class="image-container1">
+        <img src="{{ url_for('static', filename='Images/El1.png') }}" alt="Web Logo">
+        <p class="tagline"><i>Register. Vote. Make your Voice Heard.</i></p>
+    </div>
+    <div class="image-container2">
+        <img src="{{ url_for('static', filename='Images/CSlogo.png') }}" alt="CS Logo">
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<center>
+<div class="box">
+     <div class="message-container">
+        <div class="welcome-message">Welcome, PUP-Tian!</div>
+        <div class="destination-message">Please proceed by selecting your destination.</div>
+    </div>
+	<form action="{{ url_for('home.student_page') }}" method="get">
+    	<button class="student-button"><b>Student</b></button>
+    </form>
+    <br>
+    <form action="{{ url_for('home.admin_page') }}" method="get">
+    	<button class="admin-button"><b>Admin</b></button>
+	</form>
+</div>
+</center>
+
+</body>
+</html>

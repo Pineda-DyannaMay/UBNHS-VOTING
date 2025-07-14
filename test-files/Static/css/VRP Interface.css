@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container1 {
+    text-align: center;
+    background-color: rgba(218, 210, 216, 0.6); 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-container1 img {
+    width: 50%;
+    height: auto;
+}
+
+.sidebar a.active {
+  background-color: #143642;
+  color: #DAD2D8
+  font-weight: bold;
+}
+
+.container {
+   padding: 10px; /* Reduced padding */
+   max-width: 900px; /* Shortened max width */
+   margin: 0 auto; /* Center the container */
+}
+
+header {
+    background-color: #EC9A29;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px; /* Added space below header */
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 70px;
+}
+
+.logo2 {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 70px;
+}
+
+.table-container {
+    background-color: rgba(247, 239, 239, 0.726);
+    padding: 10px; /* Reduced padding */
+    border-radius: 10px;
+    margin-bottom: 20px; /* Space between containers */
+    max-width: 900px; /* Limit the width of the container */
+    max-height: 2000px; /* Limit the height of the container */
+    overflow-y: auto; /* Add vertical scrolling if content overflows */
+    margin-left: auto; /* Center the container horizontally */
+    margin-right: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 900px; /* Limit the width of the table */
+}
+
+
+th, td {
+    border: 1px solid white;
+    padding: 6px 8px; /* Reduced padding inside table cells */
+    text-align: center;
+    font-size: 0.9em; /* Smaller font size for table content */
+}
+
+th {
+    background-color: #8b0000;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px; /* Reduced margin */
+}
+
+.container button {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 4px 8px; /* Reduced button padding */
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.8em; /* Reduced font size for buttons */
+}
+
+.container button:hover {
+    background-color: #d9534f;
+}
+
+input[type="file"] {
+    margin-left: 15px;
+}

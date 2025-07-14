@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUPT CS El-Express About Us</title>
+<style>
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #A8201A;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #EC9A29;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #DAD2D8;
+  background-color: #143642;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 36px;
+  margin-left: 10px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #A8201A;
+  color: white;
+  padding: 10px 15px;
+  border: 2px solid;
+  border-radius: 8px;
+  border-color: #EC9A29;
+}
+
+.openbtn:hover {
+  background-color: #143642;
+  color: #DAD2D8;
+}
+
+#main {
+  transition: margin-left .5s, width 0.5s;
+  padding: 16px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #main {
+    transition: margin-left .5s, width 0.5s;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/AU Interface.css') }}">
+
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="{{ url_for('dashboard_bp.dashboard') }}">Home</a>
+  <a href="{{ url_for('candidate_bp.candidate') }}">Candidates</a>
+  <a href="{{ url_for('voters_bp.voters') }}">Voters/Members</a>
+  <a href="{{ url_for('about_bp.about') }}" id="about_us">About Us</a>
+  <a href="{{ url_for('auth_bp.logout') }}">Log Out</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
+  <main class="content">
+        
+    <div class="image-container1">
+        <img src="{{ url_for('static', filename='Images/El1.png') }}" alt="Web Logo">
+    </div>
+        <br>
+        <br>
+    <section id="about" class="section">
+        <h2>ABOUT US</h2>
+        <div class="about-box">
+            <p>
+                Welcome to PUP-T CS Election Express, a web-based voting platform created by Group 6 of the Polytechnic University of the Philippines - Taguig. This system is specifically designed to revolutionize the electoral process for the Computer Society (CS) organization.
+            </p>
+            <br>
+            <p>
+                Our mission is to provide a secure, user-friendly, and transparent platform that ensures every vote is counted accurately and securely. The PUP-T CS Election Express is tailored to meet the needs of Computer Society members, prioritizing ease of use, confidence, and fairness in every election.
+            </p>
+    
+
+        <h3>OUR TEAM</h3>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/TEVES.png') }}" alt="Gwen L. Teves" class="team-photo">
+                <p class="team-name">Gwen L. Teves</p>
+                <p class="team-role">Project Manager</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/CORPUS.png') }}" alt="Precious Hannah A. Corpus" class="team-photo">
+                <p class="team-name">Precious Hannah A. Corpus</p>
+                <p class="team-role">Front-End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/FRANCO.png') }}" alt="Fernette Pearl M. Franco" class="team-photo">
+                <p class="team-name">Fernette Pearl M. Franco</p>
+                <p class="team-role">Full-Stack</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/GULLES.png') }}" alt="Althea Shane S. Gulles" class="team-photo">
+                <p class="team-name">Althea Shane S. Gulles</p>
+                <p class="team-role">Documentation</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/LAGAN.jpg') }}" alt="Yoan Marvic J. Lagan" class="team-photo">
+                <p class="team-name">Yoan Marvic J. Lagan</p>
+                <p class="team-role">Database Admin</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/MORALES.png') }}" alt="Woman Daphne P. Morales" class="team-photo">
+                <p class="team-name">Woman Daphne P. Morales</p>
+                <p class="team-role">Back-End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/PINEDA.png') }}" alt="Dyanna May D. Pineda" class="team-photo">
+                <p class="team-name">Dyanna May D. Pineda</p>
+                <p class="team-role">Front-End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='Images/VILLANUEVA.png') }}" alt="Bernadette C. Villanueva" class="team-photo">
+                <p class="team-name">Bernadette C. Villanueva</p>
+                <p class="team-role">Back-End</p>                
+            </div>
+        </div>
+    </section>
+    <section id="about" class="section">
+    <h2>CONTACT US</h2>
+    <div class="about-box">
+        <p>
+            Contact Number: 0961 155 7833
+        </p>
+        <p>
+            Email: tevesgwenn.sch@gmail.com
+        </p>
+    </div>
+    </section>
+  </main>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";  // Sidebar width when opened
+  document.getElementById("main").style.marginLeft = "250px";  // Push content to the right
+  document.getElementById("main").style.width = "calc(100% - 250px)";  // Ensure main content shrinks accordingly
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";  // Sidebar width when closed
+  document.getElementById("main").style.marginLeft = "0";  // No shift for the main content
+  document.getElementById("main").style.width = "100%";  // Reset main content width
+}
+
+document.getElementById('about_us').classList.add('active');
+</script>
+</body>
+</html>

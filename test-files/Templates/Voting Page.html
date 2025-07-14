@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Voting Page - PUP University Elections</title>
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/VP Interface.css') }}">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+                color: #333;
+            }
+    
+            header {
+                position: relative;
+                padding: 20px;
+                text-align: center;
+            }
+            .logo {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 90px;
+            }
+            .logo2 {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 90px;
+            }
+            .candidate-box {
+                text-align: center;
+                display: inline-block;
+                margin: 10px;
+            }
+            .candidate-box img {
+                display: block;
+                margin: 0 auto;
+                width: 150px; /* Adjust as needed */
+                height: 150px; /* Adjust as needed */
+                border-radius: 10px; /* Optional styling for images */
+            }
+            .committee {
+                text-align: center;
+                margin: 20px 0;
+            }
+            .buttons-container {
+                margin-top: 20px;
+                text-align: center;
+            }
+            .buttons-container button {
+                margin: 0 10px;
+                padding: 10px 20px;
+            }
+    
+            #submit-summary {
+                display: none;
+                text-align: center;
+                margin-top: 50px;
+            }
+    
+            #summary-container {
+                margin-top: 20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+    
+        <header>
+            <img src="{{ url_for('static', filename='Images/CSlogo.png') }}" alt="PUP Taguig Computer Society Logo" class="logo">
+            <img src="{{ url_for('static', filename='Images/PUPlogo.png') }}" alt="PUP Taguig Logo" class="logo2">
+            <h1>Your Voice, Your Choice, Your Future</h1>
+            <p>Please select your preferred candidate for each committee.</p>
+        </header>
+        
+        <section class="voting-container">
+            <form action="#" method="POST">
+                {% for committee_name, committee_candidates in candidates.items() %} 
+                    <div id="committee{{ loop.index0 }}" class="committee" style="display: {% if loop.index0 == 0 %} block {% else %} none {% endif %};">
+                        <h2>{{ committee_name }}</h2>
+                        <div class="candidates-row">
+                            {% for candidate in committee_candidates %}
+                                <div class="candidate-box">
+                                    <img src="{{ url_for('static', filename='images/' + candidate.picture) }}" alt="{{ candidate.name }}">
+                                    <label>
+                                        <input type="radio" name="{{ committee_name }}" value="{{ candidate.name }}"> {{ candidate.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="buttons-container">
+                            <button type="button" onclick="previousCommittee({{ loop.index0 }})">Back</button>
+                            <button type="button" onclick="nextCommittee({{ loop.index0 }})">Next</button>
+                        </div>
+                    </div>
+                {% endfor %}
+    
+                <!-- Submit Vote Button (Always Hidden Until End) -->
+                <div id="submit-vote-container" class="buttons-container" style="display: none;">
+                    <button type="button" onclick="submitVote()">Review and Submit Vote</button>
+                </div>
+    
+            </form>
+        </section>
+    
+        <!-- Submit Summary -->
+        <div id="submit-summary" class="voting-container">
+            <h2>Review Your Voting Choices:</h2>
+            <div id="summary-container"></div>
+            <div class="buttons-container">
+                <button type="button" onclick="goBackToVoting()">Back to Voting</button>
+                <button type="button" onclick="finalizeVote()">Submit Vote</button>
+            </div>
+        </div>
+
+        <!-- Thank You Section -->
+        <div id="thank-you" class="voting-container" style="display:none; text-align: center; margin-top: 50px;">
+            <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px;">Thank You for Voting!</h1>
+            <h2 style="font-size: 1.8em; color: #555; font-style: italic;">"The Future You Voted For Starts Now!"</h2>
+            <p style="margin-top: 30px; font-size: 1.2em; color: #666;">
+                Stay tuned as we embark on this journey together towards a brighter tomorrow!
+            </p>
+
+            <a href="{{ url_for('home.home') }}">Back</a>
+        </div>
+
+        <script>
+            let selectedCandidates = {};
+            let currentCommitteeIndex = 0; // Track the current committee index
+
+            function nextCommittee(currentIndex) {
+                // Hide the current committee
+                var currentCommittee = document.getElementById("committee" + currentIndex);
+                currentCommittee.style.display = "none";
+                
+                // Show the next committee
+                var nextCommittee = document.getElementById("committee" + (currentIndex + 1));
+                if (nextCommittee) {
+                    nextCommittee.style.display = "block";
+                    currentCommitteeIndex = currentIndex + 1; // Update the current committee index
+                }
+
+                // Check if it's the last committee
+                if (currentIndex === {{ candidates|length - 1 }}) {
+                    // Directly skip to the review page
+                    submitVote();
+                } else {
+                    // Ensure the Next button is shown for all other committees
+                    var nextButton = document.querySelector("#committee" + currentIndex + " .buttons-container button:nth-child(2)");
+                    nextButton.style.display = "inline-block";
+                }
+            }
+
+            function previousCommittee(currentIndex) {
+                // Hide the current committee
+                var currentCommittee = document.getElementById("committee" + currentIndex);
+                currentCommittee.style.display = "none";
+                
+                // Show the previous committee
+                var previousCommittee = document.getElementById("committee" + (currentIndex - 1));
+                if (previousCommittee) {
+                    previousCommittee.style.display = "block";
+                    currentCommitteeIndex = currentIndex - 1; // Update the current committee index
+                }
+                
+                // Hide the "Submit Vote" button if going back before the last committee
+                document.getElementById("submit-vote-container").style.display = "none";
+            }
+
+            function submitVote() {
+                // Gather selected candidates
+                {% for committee_name, committee_candidates in candidates.items() %}
+                    var selectedCandidate = document.querySelector('input[name="{{ committee_name }}"]:checked');
+                    if (selectedCandidate) {
+                        selectedCandidates["{{ committee_name }}"] = selectedCandidate.value;
+                    }
+                {% endfor %}
+                
+                // Display the voting summary before submitting
+                var summaryContainer = document.getElementById("summary-container");
+                summaryContainer.innerHTML = ''; // Clear any previous summaries
+                
+                for (let committeeName in selectedCandidates) {
+                    var candidateName = selectedCandidates[committeeName];
+                    var committeeSummary = document.createElement("p");
+                    committeeSummary.innerHTML = committeeName + ": " + candidateName;
+                    summaryContainer.appendChild(committeeSummary);
+                }
+                
+                // Hide the voting section and show the submit summary
+                document.querySelector(".voting-container").style.display = "none";
+                document.getElementById("submit-summary").style.display = "block";
+            }
+
+            function finalizeVote() {
+                // Hide everything and show the thank you page
+                document.getElementById("submit-summary").style.display = "none";
+                document.getElementById("thank-you").style.display = "block";
+            }
+
+            function goBackToVoting() {
+                // Hide the current summary page
+                document.getElementById("submit-summary").style.display = "none";
+                
+                // Show the voting page and reset to the committee where the user was last
+                document.querySelector(".voting-container").style.display = "block";
+                
+                // Display the committee based on the currentCommitteeIndex and ensure that buttons are visible
+                var committee = document.getElementById("committee" + currentCommitteeIndex);
+                if (committee) {
+                    committee.style.display = "block";
+                }
+                
+                // Ensure the "Submit Vote" button is hidden
+                document.getElementById("submit-vote-container").style.display = "none";
+                
+                // Recalculate button visibility (Back/Next) based on the current index
+                var allCommittees = document.querySelectorAll(".committee");
+                allCommittees.forEach(function(committee, index) {
+                    var nextButton = committee.querySelector(".buttons-container button:nth-child(2)");
+                    var backButton = committee.querySelector(".buttons-container button:nth-child(1)");
+                    
+                    if (index === 0) {
+                        backButton.style.display = "none"; // Hide Back button on the first committee
+                    } else {
+                        backButton.style.display = "inline-block"; // Show Back button on all other committees
+                    }
+                
+                    if (index === allCommittees.length - 1) {
+                        nextButton.style.display = "inline-block"; // Ensure Next button is always visible on the last committee
+                    } else {
+                        nextButton.style.display = "inline-block"; // Show Next button on all other committees
+                    }
+                });
+            }
+        </script>
+
+    </body>
+</html>

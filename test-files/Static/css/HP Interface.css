@@ -1,0 +1,128 @@
+body {
+    margin: 0; 
+    height: 100vh; 
+    background-image: url('../Images/PUPTbg1.jpg');
+    background-size: contain; 
+    background-position: 0px 170px; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-color: #DAD2D8;
+}
+
+a {
+    text-decoration: none;
+}
+
+.box {
+    background-color: rgba(218, 210, 216, 0.6);
+    padding: 75px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 300px;   
+    height: 150px;
+    position: relative;
+}
+
+button {
+    display: block;
+    width: 150px;
+    padding: 15px;
+    margin: 10px auto;
+    font-size: 16px;
+    border: 2px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.student-button {
+    color: #EC9A29;
+    border-color: #EC9A29;
+    background-color: #A8201A; 
+}
+
+.student-button:hover {
+    background-color: #143642;
+    color: white;
+}
+
+.admin-button {
+    color: #EC9A29;
+    border-color: #EC9A29;
+    background-color: #A8201A;
+}
+
+.admin-button:hover {
+    background-color: #143642;
+    color: white;
+}
+
+.image-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: -10px;
+}
+
+.image-container1 {
+    text-align: center; 
+    margin-top: 20px;
+}
+
+.image-container1 img {
+    width: 80%; 
+    height: auto; 
+}
+
+.image-container2 {
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.image-container2 img {
+  width: 20%;
+  height: auto;
+}
+
+.image-container3 {
+   text-align: left;
+   margin-left: 50px;
+   margin-top: 10px;
+}
+
+.image-container3 img{
+   width: 20%; 
+   height: auto;
+}
+
+.tagline {
+   text-align: center; 
+   font-style: italic; 
+   margin-top: -10px; 
+   font-size: 16px; 
+   color: #143642;
+}
+
+.message-container {
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+.welcome-message {
+    font-size: 32px;
+    color: #800000;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.destination-message {
+    font-size: 14px;
+    color: #800000;
+    font-weight: normal;
+    margin-top: -5px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/AP Interface.css') }}">
+
+     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #DAD2D8;
+            background-image: url("{{ url_for('static', filename='Images/AdminLogin1.png') }}");
+            background-size: cover;
+            background-position: center; 
+            background-attachment: fixed; 
+            background-repeat: no-repeat; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Flash messages will be shown here -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Login Form -->
+    <center>
+    <div class="box">
+        <div class="image-container1">
+            <img src="{{ url_for('static', filename='Images/El1.png') }}" alt="Web Logo">
+            <br>
+            <br>
+            <h2><b>USER LOGIN</b></h2>
+            <form method="POST" action="{{ url_for('auth_bp.login') }}">
+            <div class="user-box">
+                 <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <br>
+            <br>
+            <div class="user-box">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <br>
+            <br>
+            <button type="submit"><b>Login</b>
+            </button>
+            </form>
+
+            <a href="{{ url_for('home.home') }}">Back</a>
+        </div>
+    </div>
+    </center>
+</body>
+</html>

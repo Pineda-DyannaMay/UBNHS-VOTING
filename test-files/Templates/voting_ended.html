@@ -1,0 +1,93 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Voting Page - PUP University Elections</title>
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/VP Interface.css') }}">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+                color: #333;
+            }
+    
+            header {
+                position: relative;
+                padding: 20px;
+                text-align: center;
+            }
+            .logo {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 90px;
+            }
+            .logo2 {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 90px;
+            }
+            .candidate-box {
+                text-align: center;
+                display: inline-block;
+                margin: 10px;
+            }
+            .candidate-box img {
+                display: block;
+                margin: 0 auto;
+                width: 150px; /* Adjust as needed */
+                height: 150px; /* Adjust as needed */
+                border-radius: 10px; /* Optional styling for images */
+            }
+            .committee {
+                text-align: center;
+                margin: 20px 0;
+            }
+            .buttons-container {
+                margin-top: 20px;
+                text-align: center;
+            }
+            .buttons-container button {
+                margin: 0 10px;
+                padding: 10px 20px;
+            }
+    
+            #submit-summary {
+                display: none;
+                text-align: center;
+                margin-top: 50px;
+            }
+    
+            #summary-container {
+                margin-top: 20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+    
+        <header>
+            <img src="{{ url_for('static', filename='Images/CSlogo.png') }}" alt="PUP Taguig Computer Society Logo" class="logo">
+            <img src="{{ url_for('static', filename='Images/PUPlogo.png') }}" alt="PUP Taguig Logo" class="logo2">
+            <br>
+            <h1>Your Voice, Your Choice, Your Future</h1>
+            <p> </p>
+        </header>
+
+        <!-- Thank You Section -->
+        <div id="thank-you" class="voting-container" style="text-align: center; margin-top: 50px;">
+            <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px;">Voting Has Ended</h1>
+            <h2 style="font-size: 1.8em; color: #555; font-style: italic;">The voting has already concluded. Thank you for participating!</h2>
+            <p style="margin-top: 30px; font-size: 1.2em; color: #666;">
+                Stay tuned as we embark on this journey together towards a brighter tomorrow!
+            </p>
+
+            <a href="{{ url_for('home.home') }}">Back</a>
+        </div>
+
+    </body>
+</html>

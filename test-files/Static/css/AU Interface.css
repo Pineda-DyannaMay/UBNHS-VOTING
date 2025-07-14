@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0; 
+    height: 100vh; 
+    background-image: url('../Images/BG.png');
+    background-size: cover; 
+    background-position: 0px 0px; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-color: #DAD2D8;
+}
+
+#about p {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.section {
+    width: 90%; 
+    margin: 20px auto; 
+    text-align: center;
+}
+
+#about h2, #about h3 {
+    background-color: #d2b538;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.team-member {
+    text-align: center;
+    max-width: 150px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.team-role {
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .team-container {
+        gap: 10px;
+    }
+
+    .team-member {
+        max-width: 120px;
+    }
+
+    .team-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .team-name {
+        font-size: 14px;
+    }
+
+    .team-role {
+        font-size: 12px;
+    }
+}
+
+#about .about-box {
+    background-color: rgba(218, 210, 216, 0.6); 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.status-container {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.status-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.sidebar a.active {
+  background-color: #143642;
+  color: #DAD2D8
+  font-weight: bold;
+}
+
+.image-container1 {
+    text-align: center;
+    background-color: rgba(218, 210, 216, 0.6); 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-container1 img {
+    width: 40%;
+    height: auto;
+}
+
+.position-box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}

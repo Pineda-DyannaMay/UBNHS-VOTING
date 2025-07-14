@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("{{ url_for('static', filename='Images/BG.png') }}");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #333;
+}
+
+header {
+    background-color: #4A0404;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 90px;
+}
+
+.logo2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 90px;
+}
+
+
+.voting-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+}
+
+.committee {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.committee h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #800000;
+}
+
+
+.candidates-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.candidate-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    width: 150px;
+}
+
+.candidate-box:hover {
+    transform: scale(1.05);
+}
+
+.candidate-box img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.candidate-box label {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.buttons-container button {
+    background-color: #E49B0F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.buttons-container button:hover {
+    background-color: #A24E4A;
+}

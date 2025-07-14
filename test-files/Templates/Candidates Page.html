@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUPT CS El-Express Candidates</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh; 
+  background-image: url("{{ url_for('static', filename='Images/Candidate BG.png') }}");
+  background-size: cover; 
+  background-position: 0px 0px; 
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+  background-color: #DAD2D8;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #A8201A;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #EC9A29;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #DAD2D8;
+  background-color: #143642;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 36px;
+  margin-left: 10px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #A8201A;
+  color: white;
+  padding: 10px 15px;
+  border: 2px solid;
+  border-radius: 8px;
+  border-color: #EC9A29;
+}
+
+.openbtn:hover {
+  background-color: #143642;
+  color: #DAD2D8;
+}
+
+#main {
+  transition: margin-left .5s, width 0.5s;
+  padding: 16px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  #main {
+    transition: margin-left .5s, width 0.5s;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/CP Interface.css') }}">
+
+</head>
+<body>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="{{ url_for('dashboard_bp.dashboard') }}">Home</a>
+  <a href="{{ url_for('candidate_bp.candidate') }}" id="candi">Candidates</a>
+  <a href="{{ url_for('voters_bp.voters') }}">Voters/Members</a>
+  <a href="{{ url_for('about_bp.about') }}">About Us</a>
+  <a href="{{ url_for('auth_bp.logout') }}">Log Out</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
+  <main class="content">
+        
+    <div class="image-container1">
+        <img src="{{ url_for('static', C:\Users\Dyanna\Desktop\test-files\Templates\Images\El1.png') }}" alt="Web Logo">
+    </div>
+    <br>
+    <br>
+
+    <center>
+    <div class="container">
+    
+        <div class="header">
+            <img src="{{ url_for('static', filename='Images/PUPlogo.png') }}" alt="PUP Logo">
+            <h1>Committee's Candidate Lists</h1>
+            <img src="{{ url_for('static', filename='Images/CSlogo.png') }}" alt="CS Logo">
+        </div>
+
+        
+        <div id="candidateTableContainer">
+            <table id="candidateTable">
+                <thead>
+                    <tr>
+                        <th>Committee</th>
+                        <th>Candidate Name</th>
+                        <th>Picture</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for candidate in candidates %}
+                  <tr>
+                      <td>{{ candidate.committee }}</td>
+                      <td>{{ candidate.name }}</td>
+                      <td><img src="{{ url_for('serve_uploads', filename=candidate.picture) }}" alt="Candidate" class="candidate-pic"></td>
+                      <td>
+                          <form action="{{ url_for('candidate_bp.delete_candidate', candidate_id=candidate.id) }}" method="POST">
+                              <button type="submit" class="delete-btn">Delete</button>
+                          </form>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+
+
+        <div class="form-container">
+            <h3>Add Candidates</h3>
+            <form id="addCandidateForm" action="{{ url_for('candidate_bp.add_candidate') }}" method="POST" enctype="multipart/form-data">
+                <label for="committee">Committee:</label>
+                <select id="committee" name="committee" required>
+                    <option value="">Select a Committee</option>
+                    <option value="PRESIDENT">PRESIDENT</option>
+                    <option value="VP EXTERNAL AFFAIRS">VP EXTERNAL AFFAIRS</option>
+                    <option value="VP FINANCE">VP FINANCE</option>
+                    <option value="AVP FOR RECORDS">AVP FOR RECORDS</option>
+                    <option value="AVP FOR FINANCE">AVP FOR FINANCE</option>
+                    <option value="AVP FOR RESEARCH AND DOCUMENTATION">AVP FOR RESEARCH AND DOCUMENTATION</option>
+                    <option value="VP AUDIT">VP AUDIT</option>
+                    <option value="VP COMMUNICATIONS">VP COMMUNICATIONS</option>
+                    <option value="AVP COMMUNICATIONS">AVP COMMUNICATIONS</option>
+                    <option value="DELEGATES REPRESENTATIVE">DELEGATES REPRESENTATIVE</option>
+                    <option value="DIRECTOR FOR CREATIVES">DIRECTOR FOR CREATIVES</option>
+                    <option value="CO-DIRECTOR FOR CREATIVES">CO-DIRECTOR FOR CREATIVES</option>
+                    <option value="DIRECTOR FOR ACADEMICS">DIRECTOR FOR ACADEMICS</option>
+                    <option value="CO-DIRECTOR FOR ACADEMICS">CO-DIRECTOR FOR ACADEMICS</option>
+                    <option value="DIRECTOR FOR SPORTS">DIRECTOR FOR SPORTS</option>
+                    <option value="CO-DIRECTOR FOR SPORTS">CO-DIRECTOR FOR SPORTS</option>
+                </select>
+                <label for="candidateName">Candidate Name:</label>
+                <input type="text" id="candidateName" name="candidate_name" placeholder="Enter Name" required>
+                
+                <label for="candidatePic">Candidate Picture:</label>
+                <div class="file-input-container">
+                    <input type="file" id="candidatePic" name="candidate_pic" accept="image/*" required>
+                    <label for="candidatePic" class="file-input-label">Choose File</label>
+                </div>
+                <button type="submit">Add Candidate</button>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+      <!-- Voting Duration Form Section -->
+      <div class="form-container">
+          <h3>Set Voting Duration</h3>
+          <form id="votingDurationForm" method="POST" action="{{ url_for('candidate_bp.set_voting_duration') }}">
+              <label for="votingDuration">Select Voting End Date and Time:</label>
+              <input type="datetime-local" id="votingDuration" name="voting_end_time" required>
+              <button type="submit">Set Duration</button>
+          </form>
+      </div>
+  </div>
+  </center>
+  </main>
+  </div>
+  
+  <script>
+  function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";  // Sidebar width when opened
+      document.getElementById("main").style.marginLeft = "250px";  // Push content to the right
+      document.getElementById("main").style.width = "calc(100% - 250px)";  // Ensure main content shrinks accordingly
+  }
+  
+  function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";  // Sidebar width when closed
+      document.getElementById("main").style.marginLeft = "0";  // No shift for the main content
+      document.getElementById("main").style.width = "100%";  // Reset main content width
+  }
+  
+  document.getElementById('candi').classList.add('active');
+  
+  document.getElementById('addCandidateForm').addEventListener('submit', function (e) {
+      const committee = document.getElementById('committee').value;
+      const candidateName = document.getElementById('candidateName').value;
+      const candidatePic = document.getElementById('candidatePic').files[0];
+  
+      const tableBody = document.querySelector('#candidateTable tbody');
+      const row = document.createElement('tr');
+  
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          const imageUrl = e.target.result;
+  
+          row.innerHTML = `
+              <td>${committee}</td>
+              <td>${candidateName}</td>
+              <td><img src="${imageUrl}" alt="Candidate" class="candidate-pic"></td>
+              <td><button class="delete-btn">Delete</button></td>
+          `;
+  
+          tableBody.appendChild(row);
+  
+          row.querySelector('.delete-btn').addEventListener('click', function () {
+              row.remove();
+          });
+  
+          // Reset the form after adding the candidate
+          document.getElementById('addCandidateForm').reset();
+      };
+  
+      reader.readAsDataURL(candidatePic);  // Convert the image to data URL
+  });
+  
+  document.querySelectorAll('.delete-btn').forEach(button => {
+      button.addEventListener('click', function () {
+          this.closest('tr').remove();
+      });
+  });
+  
+  document.getElementById('votingDurationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const votingDuration = document.getElementById('votingDuration').value;
+      
+      // You can now use the selected date and time (votingDuration)
+      alert("Voting will end at: " + votingDuration);
+  });
+  
+  
+  document.addEventListener('DOMContentLoaded', function() 
+  {
+    const endTimeStr = '{{ voting_end_time }}';
+    if (endTimeStr) {
+        const formattedEndTime = endTimeStr.replace(' ', 'T').substring(0, 16);
+        document.getElementById('votingDuration').value = formattedEndTime;
+    }
+
+    // Check if the alert has already been shown
+    if (localStorage.getItem('alertShown') === 'true') {
+        return; // Exit early if the alert was already shown
+    }
+
+    const endTimeMs = new Date('{{ voting_end_time }}').getTime();
+    const timerInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = endTimeMs - now;
+
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            Swal.fire({
+                title: 'Voting has ended!',
+                icon: 'info',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                localStorage.setItem('alertShown', 'true');
+                window.location.href = '/candidate/candidate';
+            });
+        }
+    }, 1000);
+    
+    //sidebar not working but database is fixed
+
+  }); // <-- This closes the DOMContentLoaded event listener
+
+  </script>
+  </body>
+  </html>
